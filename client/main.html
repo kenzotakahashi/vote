@@ -1,0 +1,81 @@
+<head>
+  <title>pronounceit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+</head>
+
+<body>
+</body>
+
+<template name="layout">
+  <div class="container">
+    <div id="main">
+      {{> yield}}
+    </div>
+  </div>
+</template>
+
+<template name="vote">
+  <div><a href="/japanese">I am Korean</a></div>
+  <div><a href="/korean">I am Japanese</a></div>
+</template>
+
+<template name="voteKorean">
+  <form class="pure-form">
+    {{#each students}}
+      <label for="{{this}}" class="pure-checkbox">
+        <input type="checkbox" id="{{this}}" name="{{this}}" >
+          {{this}}
+      </label>
+    {{/each}}
+
+    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+  </form>
+</template>
+
+<template name="voteJapanese">
+  <form class="pure-form">
+    {{#each students}}
+      <label for="{{this}}" class="pure-checkbox">
+        <input type="checkbox" id="{{this}}" name="{{this}}" >
+          {{this}}
+      </label>
+    {{/each}}
+
+    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+  </form>
+
+  <p>{{error}}</p>
+</template>
+
+<template name="thanks">
+  <p>Thanks!</p>
+
+  <div><a href="ranking">See the ranking</a></div>
+</template>
+
+<template name="ranking">
+
+  <table class="pure-table pure-table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each students}}
+        <tr>
+          <td>{{index}}</td>
+          <td>{{name}}</td>
+          <td>{{count}}</td>
+        </tr>        
+      {{/each}}
+    </tbody>
+  </table>
+
+
+</template>
