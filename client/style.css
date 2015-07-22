@@ -2,14 +2,12 @@
 	margin: 2em;
 }
 
-@keyframes fadeOut {
-  0% {opacity: 0;}
-  10% {opacity: 1;}
-  90% {opacity: 1;}
-  100% {opacity: 0;}
+.error {
+	color: rgb(202, 60, 60);
 }
 
-.alert {
-  animation: fadeOut 2700ms ease-in 0s 1 forwards;
-  color: rgb(202, 60, 60);
+table {
+	margin-right: auto;
+	margin-left: auto;
 }
+

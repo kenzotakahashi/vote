@@ -5,6 +5,18 @@ var japanese = ["Saki","Asuka","Dai","Yuri","Nozomi","Yutori","Maki","Kodai","Ri
 Template.voteKorean.helpers({
   students: function() {
     return korean;
+  },
+  error: function() {
+    return Session.get('error');
+  }
+});
+
+Template.voteJapanese.helpers({
+  students: function() {
+    return japanese;
+  },
+  error: function() {
+    return Session.get('error');
   }
 });
 
@@ -19,12 +31,15 @@ Template.voteKorean.events({
         checkedList.push(korean[i]);
       }
     }
-    if (checkedList.length > 3) {
-      console.log("more than 3");
+
+    if (localStorage.getItem('voted')) {
+      Session.set('error', "You have already voted!");      
+    } else if (checkedList.length > 3) {
+      Session.set('error', "You may not choose more than 3 students!");
     } else if (checkedList.length == 0) {
-      console.log("none checked");
+      Session.set('error', "You must choose at least 1 student!");
     } else {
-      console.log(checkedList);
+      Session.set('error', "");
       var post = {
         list: checkedList,
         country: "Korea"
@@ -33,18 +48,10 @@ Template.voteKorean.events({
       Meteor.call('postInsert', post, function(error, result) {
         if (error)
           return console.log(error.reason);
+        localStorage.setItem('voted', 'true');
         Router.go('thanks');  
       });
     }
-  }
-});
-
-Template.voteJapanese.helpers({
-  students: function() {
-    return japanese;
-  },
-  error: function() {
-    return Session.get('error');
   }
 });
 
@@ -59,7 +66,10 @@ Template.voteJapanese.events({
         checkedList.push(japanese[i]);
       }
     }
-    if (checkedList.length > 3) {
+
+    if (localStorage.getItem('voted')) {
+      Session.set('error', "You have already voted!");      
+    } else if (checkedList.length > 3) {
       Session.set('error', "You may not choose more than 3 students!");
     } else if (checkedList.length == 0) {
       Session.set('error', "You must choose at least 1 student!");
@@ -73,6 +83,7 @@ Template.voteJapanese.events({
       Meteor.call('postInsert', post, function(error, result) {
         if (error)
           return console.log(error.reason);
+        localStorage.setItem('voted', 'true');
         Router.go('thanks');  
       });
     }
@@ -85,18 +96,5 @@ Template.ranking.helpers({
       document.index = index + 1;
       return document;
     });
-  }
-});
-
-
-Errors = new Mongo.Collection(null);
-throwError = function(message) {
-  Errors = new Mongo.Collection(null);
-  Errors.insert({message: message});
-};
-
-Template.errors.helpers({
-  errors: function() {
-    return Errors.find();
   }
 });

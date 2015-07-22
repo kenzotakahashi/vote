@@ -17,11 +17,13 @@
 </template>
 
 <template name="vote">
-  <div><a href="/japanese">I am Korean</a></div>
-  <div><a href="/korean">I am Japanese</a></div>
+  <h3 align="center"><a href="/japanese">I am Korean</a></h3>
+  <h3 align="center"><a href="/korean">I am Japanese</a></h3>
 </template>
 
 <template name="voteKorean">
+  <p>Choose 3 studets that you had most fun talking to.</p>
+
   <form class="pure-form">
     {{#each students}}
       <label for="{{this}}" class="pure-checkbox">
@@ -32,9 +34,13 @@
 
     <button type="submit" class="pure-button pure-button-primary">Submit</button>
   </form>
+
+  <p class="error">{{error}}</p>
 </template>
 
 <template name="voteJapanese">
+  <p>Choose 3 studets that you had most fun talking to.</p>
+
   <form class="pure-form">
     {{#each students}}
       <label for="{{this}}" class="pure-checkbox">
@@ -46,7 +52,7 @@
     <button type="submit" class="pure-button pure-button-primary">Submit</button>
   </form>
 
-  <p>{{error}}</p>
+  <p class="error">{{error}}</p>
 </template>
 
 <template name="thanks">
@@ -76,6 +82,5 @@
       {{/each}}
     </tbody>
   </table>
-
 
 </template>
