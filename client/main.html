@@ -17,8 +17,8 @@
 </template>
 
 <template name="vote">
-  <h3 align="center"><a href="/japanese">I am Korean</a></h3>
-  <h3 align="center"><a href="/korean">I am Japanese</a></h3>
+  <div align="center"><a class="pure-button pure-button-primary country" href="/japanese">I am Korean</a></div>
+  <div align="center"><a class="pure-button pure-button-primary country" href="/korean">I am Japanese</a></div>
 </template>
 
 <template name="voteKorean">
@@ -32,7 +32,9 @@
       </label>
     {{/each}}
 
-    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    <p>{{counter}} voted so far.</p>
+
+    <button type="submit" class="pure-button pure-button-primary">Vote</button>
   </form>
 
   <p class="error">{{error}}</p>
@@ -49,24 +51,25 @@
       </label>
     {{/each}}
 
-    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    <p>{{counter}} voted so far.</p>
+
+    <button type="submit" class="pure-button pure-button-primary">Vote</button>
   </form>
 
   <p class="error">{{error}}</p>
 </template>
 
 <template name="thanks">
-  <p>Thanks!</p>
+  <h2 align="center">Thanks for voting!</h2>
 
-  <div><a href="ranking">See the ranking</a></div>
+  <div align="center"><a class="pure-button pure-button-primary" href="/ranking">See the ranking</a></div>
 </template>
 
 <template name="ranking">
-
   <table class="pure-table pure-table-bordered">
     <thead>
       <tr>
-        <th>#</th>
+        <th>Rank</th>
         <th>Name</th>
         <th>Score</th>
       </tr>
@@ -82,5 +85,4 @@
       {{/each}}
     </tbody>
   </table>
-
 </template>

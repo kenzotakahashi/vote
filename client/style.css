@@ -6,6 +6,11 @@
 	color: rgb(202, 60, 60);
 }
 
+.country {
+	margin: 1em;
+	width: 200px;
+}
+
 table {
 	margin-right: auto;
 	margin-left: auto;

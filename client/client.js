@@ -8,6 +8,16 @@ Template.voteKorean.helpers({
   },
   error: function() {
     return Session.get('error');
+  },
+  counter: function() {
+    var counter = Counter.findOne();
+    if (!counter) {
+      return "0 students have";
+    } else if (counter.count == 1) {
+      return "1 student has";
+    } else {
+      return counter.count + " students have";
+    }
   }
 });
 
@@ -17,6 +27,16 @@ Template.voteJapanese.helpers({
   },
   error: function() {
     return Session.get('error');
+  },
+  counter: function() {
+    var counter = Counter.findOne();
+    if (!counter) {
+      return "0 students have";
+    } else if (counter.count == 1) {
+      return "1 student has";
+    } else {
+      return counter.count + " students have";
+    }
   }
 });
 
